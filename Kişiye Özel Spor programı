@@ -1,0 +1,227 @@
+using System;
+
+class SporProgrami
+{
+    static void Main()
+    {
+        // Kullanıcıdan bilgileri alıyoruz
+        Console.WriteLine("Adınızı girin:");
+        string ad = Console.ReadLine();
+
+        Console.WriteLine("Yaşınızı girin:");
+        int yas = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Boyunuzu girin (cm cinsinden):");
+        int boy = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Kilonuzu girin (kg cinsinden):");
+        int kilo = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Haftada kaç gün spor yapmayı planlıyorsunuz?");
+        int gunSayisi = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Günde kaç saat spor yapabileceksiniz?");
+        int saat = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Sporu ne için yapıyorsunuz? (Kas yapmak / Kilo vermek):");
+        string hedef = Console.ReadLine().ToLower();
+
+        Console.WriteLine("Seviyenizi seçin (Başlangıç / Orta / İleri):");
+        string seviye = Console.ReadLine().ToLower();
+
+        double bmi = BMIHesapla(boy, kilo);
+        Console.WriteLine($"Vücut Kitle İndeksiniz (BMI): {bmi:F2}");
+
+        // BMI durumu bildirimi
+        BMIStatusu(bmi);
+
+        SporProgramiOlustur(ad, yas, boy, kilo, gunSayisi, saat, hedef, seviye);
+    }
+
+    static double BMIHesapla(int boy, int kilo)
+    {
+        // Boyu metreye çeviriyoruz
+        double boyMetre = boy / 100.0;
+        // BMI hesaplama
+        double bmi = kilo / (boyMetre * boyMetre);
+        return bmi;
+    }
+
+    static void BMIStatusu(double bmi)
+    {
+        // BMI değerine göre durum bildirimi
+        if (bmi < 18.5)
+        {
+            Console.WriteLine("Durum: Zayıf");
+        }
+        else if (bmi >= 18.5 && bmi < 24.9)
+        {
+            Console.WriteLine("Durum: Normal (Sağlıklı)");
+        }
+        else if (bmi >= 25 && bmi < 29.9)
+        {
+            Console.WriteLine("Durum: Fazla kilolu");
+        }
+        else
+        {
+            Console.WriteLine("Durum: Obez");
+        }
+    }
+
+    static void SporProgramiOlustur(string ad, int yas, int boy, int kilo, int gunSayisi, int saat, string hedef, string seviye)
+    {
+        
+        Console.WriteLine($"Yaşınız: {yas}, Boyunuz: {boy} cm, Kilolarınız: {kilo} kg");
+        Console.WriteLine($"Haftada {gunSayisi} gün spor yapacak ve her gün {saat} saat ayıracaksınız.");
+
+        // seçilen seviyeye göre set ve tekrar sayıları 
+        int setSayisi = 0;
+        int tekrarSayisi = 0;
+
+        if (seviye == "başlangıç")
+        {
+            setSayisi = 3;
+            tekrarSayisi = 8;
+        }
+        else if (seviye == "orta")
+        {
+            setSayisi = 4;
+            tekrarSayisi = 10;
+        }
+        else if (seviye == "ileri")
+        {
+            setSayisi = 5;
+            tekrarSayisi = 12;
+        }      // malım ben hoca baya hem de 
+        else
+        {
+            Console.WriteLine("Geçersiz seviye seçimi yapıldı. Başlangıç, Orta veya İleri seçin.");
+            return;
+        }
+
+        
+        if (hedef == "kas yapmak")
+        {
+            Console.WriteLine("Kas yapmak için haftada şu şekilde bir program önerilmektedir:");
+
+            
+            if (gunSayisi >= 1) 
+            {
+                Console.WriteLine("\nPazartesi - Göğüs + Kol Antremanı:");
+                Console.WriteLine($"Hareket: Bench Press | Set: {setSayisi} | Tekrar: {tekrarSayisi}");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=rT7DgCr-3pg");
+
+                Console.WriteLine($"Hareket: Dumbbell Curl | Set: {setSayisi} | Tekrar: {tekrarSayisi}");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=av7-8igSXTs");
+            }
+
+            if (gunSayisi >= 2)
+            {
+                Console.WriteLine("\nSalı - Sırt + Bacak Antremanı:");
+                Console.WriteLine($"Hareket: Deadlift | Set: {setSayisi} | Tekrar: {tekrarSayisi}");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=op9kVnSso6Q");
+
+                Console.WriteLine($"Hareket: Squat | Set: {setSayisi} | Tekrar: {tekrarSayisi}");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=aclHkVaku9U");
+            }
+
+            if (gunSayisi >= 3) 
+            {
+                Console.WriteLine("\nPerşembe - Kol + Bacak Antremanı:");
+                Console.WriteLine($"Hareket: Biceps Curl | Set: {setSayisi} | Tekrar: {tekrarSayisi}");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=kwG2ipFRgfo");
+
+                Console.WriteLine($"Hareket: Lunges | Set: {setSayisi} | Tekrar: {tekrarSayisi}");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=QOVaHwm-Q6U");
+            }
+
+            if (gunSayisi >= 4) 
+            {
+                Console.WriteLine("\nCuma - Göğüs + Sırt Antremanı:");
+                Console.WriteLine($"Hareket: Chest Fly | Set: {setSayisi} | Tekrar: {tekrarSayisi}");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=eozdVDA78K0");
+
+                Console.WriteLine($"Hareket: Lat Pulldown | Set: {setSayisi} | Tekrar: {tekrarSayisi}");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=z6PJMT2y8GQ");
+            }
+
+            if (gunSayisi >= 5) 
+            {
+                Console.WriteLine("\nCumartesi - Kardiyo:");
+                Console.WriteLine("Hareket: Koşu Bandı | Süre: 30 dakika");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=10kDbd69lbY");
+            } // selam yarrağım 
+
+            if (gunSayisi >= 6) 
+            {
+                Console.WriteLine("\nPazar - Bacak + Kardiyo:");
+                Console.WriteLine($"Hareket: Squat | Set: {setSayisi} | Tekrar: {tekrarSayisi}");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=aclHkVaku9U");
+
+                Console.WriteLine("Kardiyo: Koşu | Süre: 30 dakika");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=10kDbd69lbY");
+            }
+        }
+        else if (hedef == "kilo vermek")
+        {
+            Console.WriteLine("Kilo vermek için haftada şu şekilde bir program önerilmektedir:");
+
+            // Gün sayısına göre yapılacak haftalık progrAm
+            if (gunSayisi >= 1) 
+            {
+                Console.WriteLine("\nPazartesi - Kardiyo + Karın Antremanı:");
+                Console.WriteLine("Hareket: Koşu Bandı | Süre: 30 dakika");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=10kDbd69lbY");
+
+                Console.WriteLine($"Hareket: Plank | Set: 3 | Süre: 1 dakika");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=pSHjTRCQxIw");
+            }
+
+            if (gunSayisi >= 2) 
+            {
+                Console.WriteLine("\nSalı - Bacak ve Kardiyo Antremanı:");
+                Console.WriteLine($"Hareket: Lunges | Set: {setSayisi} | Tekrar: {tekrarSayisi}");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=QOVaHwm-Q6U");
+            }
+
+            if (gunSayisi >= 3) 
+            {
+                Console.WriteLine("\nPerşembe - Kardiyo + Karın Antremanı:");
+                Console.WriteLine("Hareket: Koşu Bandı | Süre: 30 dakika"); //orospuyum
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=10kDbd69lbY");
+
+                Console.WriteLine($"Hareket: Bicycle Crunch | Set: 3 | Tekrar: 20");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=9FGilxCbdz8");
+            }
+
+            if (gunSayisi >= 4) 
+            {
+                Console.WriteLine("\nCuma - Sırt + Kardiyo Antremanı:");
+                Console.WriteLine($"Hareket: Lat Pulldown | Set: {setSayisi} | Tekrar: {tekrarSayisi}");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=z6PJMT2y8GQ");
+            }
+
+            if (gunSayisi >= 5) 
+            {
+                Console.WriteLine("\nCumartesi - Kardiyo veya Dinlenme:");
+                Console.WriteLine("Hareket: Koşu | Süre: 30 dakika");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=10kDbd69lbY");
+            }
+
+            if (gunSayisi >= 6) 
+            {
+                Console.WriteLine("\nPazar - Bacak + Kardiyo:");
+                Console.WriteLine($"Hareket: Squat | Set: {setSayisi} | Tekrar: {tekrarSayisi}");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=aclHkVaku9U");
+
+                Console.WriteLine("Kardiyo: Koşu | Süre: 30 dakika");
+                Console.WriteLine("Video Linki: https://www.youtube.com/watch?v=10kDbd69lbY");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Geçersiz hedef girildi. Lütfen 'Kas yapmak' veya 'Kilo vermek' seçeneğini girin.");
+        }
+        return;
+    }
+}
