@@ -8,9 +8,6 @@ class SporProgrami
         Console.WriteLine("Adınızı girin:");
         string ad = Console.ReadLine();
 
-        Console.WriteLine("Yaşınızı girin:");
-        int yas = int.Parse(Console.ReadLine());
-
         Console.WriteLine("Boyunuzu girin (cm cinsinden):");
         int boy = int.Parse(Console.ReadLine());
 
@@ -35,7 +32,7 @@ class SporProgrami
         // BMI durumu bildirimi
         BMIStatusu(bmi);
 
-        SporProgramiOlustur(ad, yas, boy, kilo, gunSayisi, saat, hedef, seviye);
+        SporProgramiOlustur(ad, boy, kilo, gunSayisi, saat, hedef, seviye);
     }
 
     static double BMIHesapla(int boy, int kilo)
@@ -68,10 +65,10 @@ class SporProgrami
         }
     }
 
-    static void SporProgramiOlustur(string ad, int yas, int boy, int kilo, int gunSayisi, int saat, string hedef, string seviye)
+    static void SporProgramiOlustur(string ad,  int boy, int kilo, int gunSayisi, int saat, string hedef, string seviye)
     {
         
-        Console.WriteLine($"Yaşınız: {yas}, Boyunuz: {boy} cm, Kilolarınız: {kilo} kg");
+        Console.WriteLine($"Boyunuz: {boy} cm, Kilolarınız: {kilo} kg");
         Console.WriteLine($"Haftada {gunSayisi} gün spor yapacak ve her gün {saat} saat ayıracaksınız.");
 
         // seçilen seviyeye göre set ve tekrar sayıları 
